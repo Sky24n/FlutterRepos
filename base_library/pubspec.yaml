@@ -1,0 +1,79 @@
+name: base_library
+description: A new Flutter plugin.
+version: 0.0.1
+author: Sky24n <863764940@qq.com>
+homepage: https://github.com/Sky24n/FlutterRepos
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Dart 常用工具类库 https://github.com/Sky24n/common_utils
+  # flustars v0.2.6 版本 依赖common_utils。无需再次添加。
+#  common_utils: '>=1.1.0 <3.0.0'
+  # Flutter 常用工具类库 https://github.com/Sky24n/flustars
+
+  flustars: '>=0.2.6 <1.0.0'
+
+  # Flutter 国际化/多语言库 https://github.com/Sky24n/fluintl
+  fluintl: '>=0.1.3 <1.0.0'
+
+  # https://github.com/flutterchina/dio
+  dio: 1.0.13
+
+  # Flutter 全局屏幕适配。https://github.com/flutterchina/auto_size
+  auto_size:
+      git:
+        url: git://github.com/flutterchina/auto_size.git
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+  # This section identifies this Flutter project as a plugin project.
+  # The androidPackage and pluginClass identifiers should not ordinarily
+  # be modified. They are used by the tooling to maintain consistency when
+  # adding or updating assets for this project.
+#  plugin:
+#    androidPackage: com.library.base_library
+#    pluginClass: BaseLibraryPlugin
+
+  # To add assets to your plugin package, add an assets section, like this:
+  # assets:
+  #  - images/a_dot_burr.jpeg
+  #  - images/a_dot_ham.jpeg
+  #
+  # For details regarding assets in packages, see
+  # https://flutter.dev/assets-and-images/#from-packages
+  #
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # To add custom fonts to your plugin package, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts in packages, see
+  # https://flutter.dev/custom-fonts/#from-packages
