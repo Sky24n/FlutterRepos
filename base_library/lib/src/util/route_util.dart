@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 
 class RouteUtil {
   static void goMain(BuildContext context) {
-    pushPageName(context, BaseConstant.routeMain);
+    pushReplacementNamed(context, BaseConstant.routeMain);
   }
 
   static void goLogin(BuildContext context) {
-    pushPageName(context, BaseConstant.routeLogin);
+    pushNamed(context, BaseConstant.routeLogin);
   }
 
-  static void pushPageName(BuildContext context, String pageName) {
+  static void pushNamed(BuildContext context, String pageName) {
+    Navigator.of(context).pushNamed(pageName);
+  }
+
+  static void pushReplacementNamed(BuildContext context, String pageName) {
     Navigator.of(context).pushReplacementNamed(pageName);
   }
 }

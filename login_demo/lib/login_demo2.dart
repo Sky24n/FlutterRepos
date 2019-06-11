@@ -76,7 +76,7 @@ class SplashPageState extends State<SplashPage> {
     if (Util.isLogin()) {
       RouteUtil.goMain(context);
     } else {
-      RouteUtil.goLogin(context);
+      RouteUtil.pushReplacementNamed(context, BaseConstant.routeLogin);
     }
   }
 
@@ -89,7 +89,7 @@ class SplashPageState extends State<SplashPage> {
         RouteUtil.goMain(context);
       });
     } else {
-      RouteUtil.goLogin(context);
+      RouteUtil.pushReplacementNamed(context, BaseConstant.routeLogin);
     }
   }
 
