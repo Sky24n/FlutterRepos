@@ -27,6 +27,10 @@ class TextStyles {
     fontSize: Dimens.font_sp12,
     color: Colours.text_normal,
   );
+  static const TextStyle appTitle = TextStyle(
+    fontSize: Dimens.font_sp18,
+    color: Colours.text_dark,
+  );
 }
 
 class Decorations {

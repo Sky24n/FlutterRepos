@@ -15,5 +15,8 @@ class Dimens {
   static const double gap_dp25 = 25;
   static const double gap_dp30 = 30;
 
+  static const double btn_h_48 = 48;
+  static const double item_h_42 = 42;
+
   static const double border_width = 0.33;
 }
