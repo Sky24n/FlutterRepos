@@ -323,7 +323,7 @@ class DioUtil {
 //    _options.followRedirects = opt.followRedirects ?? _options.followRedirects;
 
     _options.method = opt.method ?? _options.method;
-    _options.headers =  opt.headers ?? _options.headers;
+    _options.baseUrl =  opt.baseUrl ?? _options.baseUrl;
     _options.queryParameters = opt.queryParameters ?? _options.queryParameters;
     _options.connectTimeout = opt.connectTimeout ?? _options.connectTimeout;
     _options.receiveTimeout = opt.receiveTimeout ?? _options.receiveTimeout;
