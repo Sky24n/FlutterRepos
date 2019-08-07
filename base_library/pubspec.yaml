@@ -24,11 +24,6 @@ dependencies:
   # https://github.com/flutterchina/dio
   dio: 1.0.13
 
-  # Flutter 全局屏幕适配。https://github.com/flutterchina/auto_size
-  auto_size:
-      git:
-        url: git://github.com/flutterchina/auto_size.git
-
 
 dev_dependencies:
   flutter_test:
