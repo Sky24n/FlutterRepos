@@ -1,17 +1,16 @@
 # FlutterRepos
-## App下载地址
-Flutter 仿滴滴出行: [百度云盘(提取码:f2ce)](https://pan.baidu.com/s/1VRP9DUKBFro5Xa_VaOUSHA)  
 
 ## base_library 
 Flutter 基础组件库，方便多个项目公用。
+版本升级功能
 
 ### 目录结构
 >- |--lib
 >    - |-- common (常用类，例如常量例如常量Constant)
 >    - |-- data (网络数据层，DioUtil，BaseResp)
 >    - |-- res (资源文件，string，colors，dimens，styles)
->    - |-- ui (界面相关page，dialog，widgets)
->    - |-- util (工具类)
+>    - |-- ui (界面相关，page，dialog，widgets)
+>    - |-- util (工具类，VersionUtil)
 
 ### Dependencies
 ```
@@ -32,15 +31,25 @@ dependencies:
   
 ```
 
+### 版本升级 (仅供参考) 
+[dio](https://pub.flutter-io.cn/packages/dio) + [install_apk_plugin](https://pub.flutter-io.cn/packages/install_apk_plugin)  
+[VersionUtil](base_library/lib/src/util/version_util.dart) + [UpgradeDialog](base_library/lib/src/ui/dialog/upgrade_dialog.dart)
+
 ## login_demo
 关于App启动时，未登录跳登录页，已登录进主页
+
+## App下载地址 (百度云盘) 
+Flutter 仿滴滴出行：[提取码:5aj6](https://pan.baidu.com/s/1-OrjMwxBwmeo2CF_3cYThg)  
+Flutter 玩安卓：[提取码:ywpj](https://pan.baidu.com/s/1Grhnx5X1UJmSWOI6LxaAMg )  
+其他下载方式 [链接](https://github.com/Sky24n/Doc)
 
 ## 关于作者
 GitHub : [Sky24n](https://github.com/Sky24n)  
 简书 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://www.jianshu.com/u/cbf2ad25d33a)  
 掘金 &nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://juejin.im/user/5b9e8a92e51d453df0440422/posts)  
-Pub &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://pub.flutter-io.cn/packages?q=email%3A863764940%40qq.com)    
-Email &nbsp;&nbsp;: 863764940@qq.com   
+Pub &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [Sky24n](https://pub.flutter-io.cn/packages?q=email%3Asky24no%40gmail.com)    
+Email &nbsp;&nbsp;: 863764940@qq.com  
+   
 如果您觉得本项目不错的话，来个star支持下作者吧!
   
 Flutter版玩安卓 [flutter_wanandroid](https://github.com/Sky24n/flutter_wanandroid)  
