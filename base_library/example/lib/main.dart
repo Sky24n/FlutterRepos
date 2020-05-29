@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:base_library/base_library.dart';
+import 'package:install_apk_plugin/install_apk_plugin.dart';
 
 void main() => runApp(MyApp());
 
@@ -52,7 +53,16 @@ class _HomePageState extends State<HomePage> {
               barrierDismissible: false,
               builder: (BuildContext context) => UpgradeDialog(
                 versionModel: model,
-                appId: 'com.library.base_library_example',
+                valueChanged: (value) {
+                  /// iOS shield / iOS屏蔽
+                  InstallPlugin.installApk(
+                          value, 'com.library.base_library_example')
+                      .then((result) {
+                    LogUtil.e('install apk $result');
+                  }).catchError((error) {
+                    LogUtil.e('install apk error: $error');
+                  });
+                },
               ),
             );
           },

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:base_library/src/util/index.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
-import 'package:install_apk_plugin/install_apk_plugin.dart';
+import 'package:flutter/cupertino.dart';
 
 class VersionUtil {
   static final VersionUtil _singleton = VersionUtil._init();
@@ -20,7 +20,7 @@ class VersionUtil {
 
   VersionUtil._init();
 
-  void downloadApk(String urlPath, String appId) async {
+  void downloadApk(String urlPath,  ValueChanged changed) async {
     if (isDownload == true || ObjectUtil.isEmpty(urlPath)) return;
     try {
       await DirectoryUtil.getInstance();
@@ -37,7 +37,7 @@ class VersionUtil {
 
       File file = File(apkPath);
       if (file.existsSync()) {
-        _install(apkPath, appId);
+        changed(apkPath);
         isDownload = false;
         listeners.forEach((listener) {
           listener(1, 1);
@@ -59,7 +59,7 @@ class VersionUtil {
             File file = File(apkTempPath);
             File fileNew = file.copySync(apkPath);
             file.deleteSync();
-            _install(apkPath, appId);
+            changed(apkPath);
           }
         },
       );
@@ -70,14 +70,6 @@ class VersionUtil {
         listener(-1, 1);
       });
     }
-  }
-
-  void _install(String filePath, String appId) {
-    InstallPlugin.installApk(filePath, appId).then((result) {
-      LogUtil.e('install apk $result');
-    }).catchError((error) {
-      LogUtil.e('install apk error: $error');
-    });
   }
 
   void addListener(OnDownloadProgress listener) {

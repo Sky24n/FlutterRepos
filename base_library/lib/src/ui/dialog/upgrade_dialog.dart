@@ -9,10 +9,10 @@ class UpgradeDialog extends StatefulWidget {
   const UpgradeDialog({
     Key key,
     this.versionModel,
-    this.appId,
+    this.valueChanged,
   }) : super(key: key);
   final VersionModel versionModel;
-  final String appId;
+  final ValueChanged valueChanged;
 
   @override
   State<StatefulWidget> createState() {
@@ -154,7 +154,9 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
                                   Navigator.pop(context);
                                 } else {
                                   VersionUtil().downloadApk(
-                                      versionModel.url, widget.appId);
+                                    versionModel.url,
+                                    widget.valueChanged,
+                                  );
                                 }
                               },
                               child: Text(
@@ -199,7 +201,7 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 24,top: 12),
+                          padding: EdgeInsets.only(left: 24, top: 12),
                           child: Text(
                             'Update Content',
                             style: TextStyles.listTitle,
@@ -239,7 +241,9 @@ class _UpgradeDialogState extends State<UpgradeDialog> {
                                 child: FlatButton(
                                     onPressed: () {
                                       VersionUtil().downloadApk(
-                                          versionModel.url, widget.appId);
+                                        versionModel.url,
+                                        widget.valueChanged,
+                                      );
                                       setState(() {
                                         isDownload = true;
                                       });

@@ -24,8 +24,6 @@ dependencies:
   # https://github.com/flutterchina/dio
   dio: 1.0.13
 
-  install_apk_plugin: ^1.0.1
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
