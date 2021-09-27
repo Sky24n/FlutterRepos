@@ -51,7 +51,7 @@ class HttpConfig {
   String data;
 
   /// Options.
-  Options options;
+  BaseOptions options;
 
   /// 详细使用请查看dio官网 https://github.com/flutterchina/dio/blob/flutter/README-ZH.md#Https证书校验.
   /// PEM证书内容.
@@ -85,8 +85,8 @@ class DioUtil {
   /// BaseResp [T data]字段 key, 默认：data.
   String _dataKey = "data";
 
-  /// Options.
-  Options _options = getDefOptions();
+  /// BaseOptions.
+  BaseOptions _options = getDefOptions();
 
   /// PEM证书内容.
   String _pem;
@@ -133,8 +133,9 @@ class DioUtil {
     _pem = config.pem ?? _pem;
     if (_dio != null) {
       _dio.options = _options;
+      DefaultHttpClientAdapter defaultHttpClientAdapter = _dio.httpClientAdapter;
       if (_pem != null) {
-        _dio.onHttpClientCreate = (HttpClient client) {
+        defaultHttpClientAdapter.onHttpClientCreate = (HttpClient client) {
           client.badCertificateCallback =
               (X509Certificate cert, String host, int port) {
             if (cert.pem == _pem) {
@@ -146,7 +147,7 @@ class DioUtil {
         };
       }
       if (_pKCSPath != null) {
-        _dio.onHttpClientCreate = (HttpClient client) {
+        defaultHttpClientAdapter.onHttpClientCreate = (HttpClient client) {
           SecurityContext sc = new SecurityContext();
           //file为证书路径
           sc.setTrustedCertificates(_pKCSPath, password: _pKCSPwd);
@@ -276,13 +277,13 @@ class DioUtil {
   Future<Response> download(
     String urlPath,
     savePath, {
-    OnDownloadProgress onProgress,
+    ProgressCallback onProgress,
     CancelToken cancelToken,
     data,
     Options options,
   }) {
     return _dio.download(urlPath, savePath,
-        onProgress: onProgress,
+        onReceiveProgress: onProgress,
         cancelToken: cancelToken,
         data: data,
         options: options);
@@ -308,18 +309,34 @@ class DioUtil {
   }
 
   /// merge Option.
-  void _mergeOption(Options opt) {
+  void _mergeOption(BaseOptions opt) {
+//    _options.method = opt.method ?? _options.method;
+//    _options.headers = (new Map.from(_options.headers))..addAll(opt.headers);
+//    _options.baseUrl = opt.baseUrl ?? _options.baseUrl;
+//    _options.connectTimeout = opt.connectTimeout ?? _options.connectTimeout;
+//    _options.receiveTimeout = opt.receiveTimeout ?? _options.receiveTimeout;
+//    _options.responseType = opt.responseType ?? _options.responseType;
+//    _options.data = opt.data ?? _options.data;
+//    _options.extra = (new Map.from(_options.extra))..addAll(opt.extra);
+//    _options.contentType = opt.contentType ?? _options.contentType;
+//    _options.validateStatus = opt.validateStatus ?? _options.validateStatus;
+//    _options.followRedirects = opt.followRedirects ?? _options.followRedirects;
+
     _options.method = opt.method ?? _options.method;
-    _options.headers = (new Map.from(_options.headers))..addAll(opt.headers);
-    _options.baseUrl = opt.baseUrl ?? _options.baseUrl;
+    _options.baseUrl =  opt.baseUrl ?? _options.baseUrl;
+    _options.queryParameters = opt.queryParameters ?? _options.queryParameters;
     _options.connectTimeout = opt.connectTimeout ?? _options.connectTimeout;
     _options.receiveTimeout = opt.receiveTimeout ?? _options.receiveTimeout;
+    _options.extra = opt.extra ?? new Map.from(_options.extra ?? {});
+    _options.headers = opt.headers ?? new Map.from(_options.headers ?? {});
     _options.responseType = opt.responseType ?? _options.responseType;
-    _options.data = opt.data ?? _options.data;
-    _options.extra = (new Map.from(_options.extra))..addAll(opt.extra);
     _options.contentType = opt.contentType ?? _options.contentType;
     _options.validateStatus = opt.validateStatus ?? _options.validateStatus;
+    _options.receiveDataWhenStatusError = opt.receiveDataWhenStatusError ?? _options.receiveDataWhenStatusError;
     _options.followRedirects = opt.followRedirects ?? _options.followRedirects;
+    _options.maxRedirects = opt.maxRedirects ?? _options.maxRedirects;
+    _options.requestEncoder = opt.requestEncoder;
+    _options.responseDecoder = opt.responseDecoder ?? _options.responseDecoder;
   }
 
   /// print Http Log.
@@ -341,7 +358,7 @@ class DioUtil {
   }
 
   /// get Options Str.
-  String _getOptionsStr(Options request) {
+  String _getOptionsStr(RequestOptions request) {
     return "method: " +
         request.method +
         "  baseUrl: " +
@@ -370,15 +387,15 @@ class DioUtil {
   }
 
   /// create new dio.
-  static Dio createNewDio([Options options]) {
+  static Dio createNewDio([BaseOptions options]) {
     options = options ?? getDefOptions();
     Dio dio = new Dio(options);
     return dio;
   }
 
   /// get Def Options.
-  static Options getDefOptions() {
-    Options options = new Options();
+  static BaseOptions getDefOptions() {
+    BaseOptions options = new BaseOptions();
     options.contentType =
         ContentType.parse("application/x-www-form-urlencoded");
     options.connectTimeout = 1000 * 30;
